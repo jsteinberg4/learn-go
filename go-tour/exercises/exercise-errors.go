@@ -9,7 +9,7 @@
 // Note: A call to fmt.Sprint(e) inside the Error method will send the program into an infinite loop. You can avoid this by converting e first: fmt.Sprint(float64(e)). Why?
 //
 // Change your Sqrt function to return an ErrNegativeSqrt value when given a negative number.
-package main
+package exercises
 
 import (
 	"fmt"
@@ -32,7 +32,7 @@ func Sqrt(x float64) (float64, error) {
 	return math.Sqrt(x), nil
 }
 
-func main() {
+func SqrtErr() {
 	fmt.Println(Sqrt(2))
 	fmt.Println(Sqrt(-2))
 }

@@ -1,4 +1,4 @@
-package main
+package examples
 
 import "fmt"
 
@@ -6,7 +6,7 @@ type Vertex struct {
 	X, Y int
 }
 
-func main() {
+func StructExample() {
 	var (
 		v1 Vertex  = Vertex{X: 1, Y: 2}
 		v2 *Vertex = &v1

@@ -3,7 +3,7 @@
 // Let's have some fun with functions.
 // Implement a fibonacci function that returns a function (a closure)
 // that returns successive fibonacci numbers (0, 1, 1, 2, 3, 5, ...).package main
-package main
+package exercises
 
 import "fmt"
 
@@ -28,7 +28,7 @@ func fibonacci() func() int {
 	}
 }
 
-func main() {
+func Fibonacci() {
 	f := fibonacci()
 	// for i := 0; i < 10; i++ {
 	// 	fmt.Println(f())

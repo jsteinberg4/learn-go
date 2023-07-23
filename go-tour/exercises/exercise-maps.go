@@ -3,7 +3,7 @@
 //
 // You might find strings.Fields helpful.
 
-package main
+package exercises
 
 import (
 	"golang.org/x/tour/wc"
@@ -18,6 +18,6 @@ func WordCount(s string) map[string]int {
 	return counts
 }
 
-func main() {
+func WordCountTest() {
 	wc.Test(WordCount)
 }

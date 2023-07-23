@@ -1,7 +1,7 @@
 // Exercise: Readers
 //
 // Implement an `io.Reader` type that emits an ASCII character 'A'
-package main
+package exercises
 
 import (
 	"golang.org/x/tour/reader"
@@ -19,6 +19,6 @@ func (reader MyReader) Read(dst []byte) (int, error) {
 	return n, nil
 }
 
-func main() {
+func ReaderValidate() {
 	reader.Validate(MyReader{})
 }

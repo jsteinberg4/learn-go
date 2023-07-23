@@ -9,7 +9,7 @@
 // applying the rot13 substitution cipher to all alphabetical characters. The rot13Reader type is provided
 // for you. Make it an io.Reader by implementing its Read method.
 // rot13 cipher: https://en.wikipedia.org/wiki/ROT13
-package main
+package exercises
 
 import (
 	"io"
@@ -53,7 +53,7 @@ func (rot13 rot13Reader) Read(dst []byte) (int, error) {
 	return n, err
 }
 
-func main() {
+func Rot13ReaderTest() {
 	s := strings.NewReader("Lbh penpxrq gur pbqr!")
 	r := rot13Reader{s}
 	io.Copy(os.Stdout, &r)
