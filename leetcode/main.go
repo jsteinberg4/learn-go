@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log/slog"
 	"os"
@@ -8,34 +9,38 @@ import (
 	"github.com/jsteinberg4/learn-go/leetcode/problems"
 )
 
-var SOLUTIONS = map[string]func(){
-	"test":             func() { fmt.Println("Test function") },
-	"MergeSortedArray": problems.MergeSortedArray,
-	"RemoveElement":    problems.RemoveElement,
+var (
+	solutions = map[string]func(){
+		"test":             func() { fmt.Println("Test function") },
+		"MergeSortedArray": problems.MergeSortedArray,
+		"RemoveElement":    problems.RemoveElement,
+	}
+	problemNameFlag *string
+)
+
+func init() {
+	problemNameFlag = flag.String("p", "test", "Problem name")
 }
 
 func main() {
+	// Parse CLI args
+	flag.Parse()
+
 	var (
-		problemName string
-		fn          func()
-		hasFn       bool
+		fn    func()
+		hasFn bool
 	)
 
+	// Configure default logging
 	handler := slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug})
 	slog.SetDefault(slog.New(handler))
 
-	// Check for correct function usage
-	if len(os.Args) < 2 {
-		fmt.Println("Error! Expected format: go run . [ProblemName]")
-		panic("Incorrect # of cmdline arguments")
-	}
-
 	// Call the correct function
-	problemName = os.Args[1]
-	if fn, hasFn = SOLUTIONS[problemName]; hasFn {
-		slog.Info(fmt.Sprintf("Function found: %v", problemName))
+	if fn, hasFn = solutions[*problemNameFlag]; hasFn {
+		slog.Info(fmt.Sprintf("Function found: %s\n", *problemNameFlag))
 		fn()
 	} else {
-		fmt.Println("Not found")
+		fmt.Printf("Function not found: %s\n", *problemNameFlag)
+		os.Exit(1)
 	}
 }

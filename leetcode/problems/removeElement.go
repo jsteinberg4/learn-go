@@ -5,6 +5,12 @@ import (
 	"log/slog"
 )
 
+func RemoveElement() {
+	// case1()
+	// case2()
+	case3()
+}
+
 // swap Swaps arr[i] with arr[j] in place
 func swap[T any](arr []T, i, j int) {
 	// WARNING: Will break if i,j out of range
@@ -62,14 +68,26 @@ func case1() {
 func case2() {
 	nums := []int{0, 1, 2, 2, 3, 0, 4, 2}
 	val := 2
-	slog.LogAttrs(nil, slog.LevelInfo, "Case 2", slog.Group("inputs", slog.Int("val", val), slog.Any("nums", nums)))
+	logInputs("Case 2", nums, val)
 	counts := removeElement(nums, val)
-	slog.LogAttrs(nil, slog.LevelInfo, "Case 2",
+	logOutputs("Case 2", nums, counts)
+}
+
+func logInputs(msg string, nums []int, val int) {
+	slog.LogAttrs(nil, slog.LevelInfo, msg, slog.Group(
+		"inputs", slog.Int("val", val), slog.Any("nums", nums)),
+	)
+}
+func logOutputs(msg string, nums []int, counts int) {
+	slog.LogAttrs(nil, slog.LevelInfo, msg,
 		slog.Group("results", slog.Int("valueCounts", counts), slog.Any("nums", nums)),
 	)
 }
 
-func RemoveElement() {
-	// case1()
-	case2()
+func case3() {
+	nums := []int{2, 1, 2, 0, 2, 6}
+	val := 2
+	logInputs("Case 3", nums, val)
+	counts := removeElement(nums, val)
+	logOutputs("Case 3", nums, counts)
 }
